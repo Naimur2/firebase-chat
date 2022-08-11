@@ -1,17 +1,27 @@
 import database from '@react-native-firebase/database';
 import React from 'react';
-import { Text, View } from 'react-native';
-import { useSelector } from 'react-redux';
+import { View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { usersActions } from '../../store/slices/usersSlice';
+import UserCard from './components/UserCard';
 
 export default function Home() {
   const user = useSelector(state => state?.auth?.user);
+  const users = useSelector(state => state?.users?.users);
+  const dispatch = useDispatch();
+
+  const filteredUser = users.filter(u => u.uid !== user.uid);
+
   React.useEffect(() => {
     const getAllUsers = async () => {
-      const users = await database()
+      database()
         .ref('users')
         .once('value')
         .then(snapShots => {
-          console.log(snapShots.val());
+          const usersObj = snapShots.val();
+
+          const usersArr = Object.keys(usersObj).map(key => usersObj[key]);
+          dispatch(usersActions.setUsers(usersArr));
         });
     };
     getAllUsers();
@@ -34,7 +44,11 @@ export default function Home() {
 
   return (
     <View>
-      <Text>Home</Text>
+      <View>
+        {filteredUser?.map((u, i) => (
+          <UserCard key={i} user={u} />
+        ))}
+      </View>
     </View>
   );
 }

@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -26,6 +26,22 @@ const styles = StyleSheet.create({
   large: {
     fontWeight: 20,
   },
+  avatar: {
+    width: 50,
+    height: 50,
+    borderRadius: 50,
+  },
+  hstack: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  card:{
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+  }
 });
 
 export default styles;

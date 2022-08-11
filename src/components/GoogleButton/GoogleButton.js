@@ -1,5 +1,5 @@
 import auth from '@react-native-firebase/auth';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import React from 'react';
 import { Button } from 'react-native';
 import styles from './../../../styles/';
@@ -19,7 +19,7 @@ export default function GoogleButton() {
       const googleCredential = auth.GoogleAuthProvider.credential(idToken);
       const user = await auth().signInWithCredential(googleCredential);
 
-      if (user.additionalUserInfo.isNewUser) {
+      if (user?.additionalUserInfo?.isNewUser) {
         const userDetails = {
           displayName: user.user.displayName,
           email: user.user.email,

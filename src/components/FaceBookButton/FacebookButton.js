@@ -25,13 +25,14 @@ export default function FacebookButton() {
     }
 
     // Create a Firebase credential with the AccessToken
-    const facebookCredential = auth.FacebookAuthProvider.credential(
+    const facebookCredential = await auth.FacebookAuthProvider.credential(
       data.accessToken,
     );
 
     // Sign-in the user with the credential
-    const user = auth().signInWithCredential(facebookCredential);
-    if (user.additionalUserInfo.isNewUser) {
+    const user = await auth().signInWithCredential(facebookCredential);
+   
+    if (user?.additionalUserInfo?.isNewUser) {
       const userDetails = {
         displayName: user.user.displayName,
         email: user.user.email,
