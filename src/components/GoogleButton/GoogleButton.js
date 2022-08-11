@@ -43,7 +43,7 @@ export default function GoogleButton() {
         alert('Google Play Services is not available or out of date');
       } else {
         // some other error happened
-        alert('Something went wrong');
+        alert(error.toString());
       }
     }
   };

@@ -73,8 +73,6 @@ export default function Chat() {
     getMessages();
   }, []);
 
-  console.log(receiver);
-
   const message1 = messages.filter(
     m => m.user._id === sender.uid && m.receiver?._id === receiver.uid,
   );
