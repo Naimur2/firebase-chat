@@ -1,0 +1,11 @@
+<resources>
+	<string name="app_name">
+		rnfbseauth
+	</string>
+	<string name="facebook_app_id">
+		1092519791339030
+	</string>
+	<string name="facebook_client_token">
+		1092519791339030|qBWQ-OypryO05293kgSv9uhzZlc
+	</string>
+</resources>
