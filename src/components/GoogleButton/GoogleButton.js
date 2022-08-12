@@ -1,12 +1,21 @@
 import auth from '@react-native-firebase/auth';
-import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
+import database from '@react-native-firebase/database';
+import {
+  GoogleSignin,
+  statusCodes
+} from '@react-native-google-signin/google-signin';
 import React from 'react';
 import { Button } from 'react-native';
 import styles from './../../../styles/';
-import database from '@react-native-firebase/database';
-
 
 export default function GoogleButton() {
+  React.useEffect(() => {
+    GoogleSignin.configure({
+      webClientId:
+        '643433349149-imrrs14kkq1olu9qjvjcjimbnloo13cl.apps.googleusercontent.com',
+    });
+  }, []);
+
   const googleSignUp = async () => {
     try {
       await GoogleSignin.hasPlayServices();
@@ -29,7 +38,6 @@ export default function GoogleButton() {
         await database().ref('users').push(userDetails);
       }
 
-      
       // Sign-in the user with the credential
       return user;
     } catch (error) {
